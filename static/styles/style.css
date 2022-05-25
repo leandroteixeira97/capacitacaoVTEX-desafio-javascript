@@ -1,0 +1,105 @@
+* {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  list-style: none;
+}
+
+html {
+  height: 100%;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(56, 56, 56, 0.127);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+}
+
+
+body {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+  border-radius: 20px;
+  padding: 0px 20px;
+}
+
+#greetings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  width: 450px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 20px 0px;
+}
+
+#city-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+#city-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+#name {
+  text-align: center;
+}
+
+#date {
+  font-size: 1rem;
+}
+
+#city-weather {
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#city-weather p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+#weather-icon img {
+  margin: -20px;
+  width: 100px;
+}
+
+#city-temperature {
+  font-size: 5rem;
+}

@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./static/styles/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,700;1,300&display=swap"
+    rel="stylesheet">
   <title>WeatherNOW</title>
 </head>
-<body>
-  
+
+<body onload="getLocation()" id="background">
+
+  <div class="content">
+    <header id="greetings">
+      <p>
+        WeatherNOW
+      </p>
+      <p>
+        <button onclick="saveWeather()">
+          <box-icon name='save' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </button>
+        <button onclick="getLocation()">
+          <box-icon name='refresh' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </button>
+      </p>
+    </header>
+    <div id="city-info">
+      <div id="city-name">
+        <p id="name"></p>
+        <p id="date"></p>
+      </div>
+      <div id="city-weather">
+        <div>
+          <p id="weather-icon"></p>
+          <p id="weather"></p>
+        </div>
+        <div id="city-temperature">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content" id="saved-weathers">
+    
+  </div>
+
+  <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+  <script src="./controllers/script.js"></script>
 </body>
+
 </html>
