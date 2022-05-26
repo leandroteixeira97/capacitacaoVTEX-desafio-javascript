@@ -13,7 +13,7 @@
   <title>WeatherNOW</title>
 </head>
 
-<body onload="getLocation()" id="background">
+<body onload="verifyLocalStorage(), getLocation()" id="background">
 
   <div class="content">
     <header id="greetings">
@@ -24,31 +24,38 @@
         <button onclick="saveWeather()">
           <box-icon name='save' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
-        <button onclick="getLocation()">
+        <button onclick="getLocation(), renderSavedWeathers()">
           <box-icon name='refresh' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
       </p>
     </header>
     <div id="city-info">
-      <div id="city-name">
-        <p id="name"></p>
-        <p id="date"></p>
+      <div class="city-name">
+        <p class="name" id="name"></p>
+        <p class="date" id="date"></p>
       </div>
-      <div id="city-weather">
+      <div class="city-weather" id="city-weather">
         <div>
-          <p id="weather-icon"></p>
-          <p id="weather"></p>
+          <p class="weather-icon" id="weather-icon"></p>
+          <p class="weather" id="weather"></p>
         </div>
-        <div id="city-temperature">
+        <div class="city-temperature" id="city-temperature">
         </div>
       </div>
     </div>
   </div>
 
   <div class="content" id="saved-weathers">
-    
+    <div id="saved-weathers-title">
+      <p>Histórico</p>
+      <p>
+        <button>
+          <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()"></box-icon>
+        </button>
+      </p>
+    </div>
   </div>
-
+  
   <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
   <script src="./controllers/script.js"></script>
 </body>

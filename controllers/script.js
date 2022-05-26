@@ -1,34 +1,24 @@
 let latitude = '';
 let longitude = '';
-let date = new Date()
-let weatherData = ''
-let savedWeathers = []
-let weatherInfo = new Object()
+let date = new Date();
+let weatherData = '';
+let savedWeathers;
+let weatherInfo = new Object();
 
 
-const dateOptions = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' }
-const backgroundImage = document.querySelector('body#background')
-const cityName = document.querySelector('p#name')
-const cityDate = document.querySelector('p#date')
-const cityWeather = document.querySelector('p#weather')
-const weatherIcon = document.querySelector('p#weather-icon')
-const cityTemperature = document.querySelector('div#city-temperature')
-const savedWeathersDiv = document.querySelector('div#saved-weathers')
+const dateOptions = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' };
+const cityName = document.querySelector('p#name');
+const cityDate = document.querySelector('p#date');
+const cityWeather = document.querySelector('p#weather');
+const weatherIcon = document.querySelector('p#weather-icon');
+const cityTemperature = document.querySelector('div#city-temperature');
+const savedWeathersDiv = document.querySelector('div#saved-weathers');
 
 const api = {
   key: "b454583c91e7916b2e10b4d4eed1fe98",
   base: "https://api.openweathermap.org/data/2.5/",
   lang: "pt_br",
   units: "metric"
-}
-
-
-function changeBackground() {
-  if (date.getHours() >= 6 && date.getHours() < 18) {
-    backgroundImage.style.background = "linear-gradient(180deg, rgba(0,120,255,1) 40%, rgba(255,180,100,1) 95%)"
-  } else {
-    backgroundImage.style.background = "linear-gradient(180deg, rgba(45,70,98,1) 40%, rgba(0,0,0,1) 95%)"
-  }
 }
 
 
@@ -42,11 +32,9 @@ function preLoader() {
 
 
 function getLocation() {
-  changeBackground()
   preLoader()
   if (navigator.geolocation) {
     if (localStorage.length != 0) {
-      savedWeathers.push(JSON.parse(localStorage.weathers))
       renderSavedWeathers()
     } else {
       savedWeathers = []
@@ -54,6 +42,14 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else { cityName.innerText = "Seu browser não suporta Geolocalização."; }
+}
+
+function verifyLocalStorage() {
+  if (localStorage.length == 0) {
+    savedWeathers = []
+  } else {
+    savedWeathers = JSON.parse(localStorage.weathers)
+  }
 }
 
 
@@ -67,7 +63,7 @@ function showPosition(position) {
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-      cityName.innerText = "Clique em “Permitir” para saber a previsão do tempo de sua localização"
+      cityName.innerText = "Clique em “Permitir” e depois recarregue a página para usar o app"
       break;
     case error.POSITION_UNAVAILABLE:
       cityName.innerText = "Localização indisponível."
@@ -94,9 +90,6 @@ async function getWeatherInfo(lat, long) {
       alert(error.message)
     })
     .then(response => {
-      if (response.weather[0].id != 800) {
-        backgroundImage.style.background = "linear-gradient(180deg, rgba(187,187,187,1) 40%, rgba(29,29,29,1) 95%)"
-      }
       cityName.innerText = `${response.name}, ${response.sys.country}`
       cityDate.innerText = `${date.toLocaleDateString('pt-BR', dateOptions)}`
       cityWeather.innerText = `${(response.weather[0].description)[0].toUpperCase() + (response.weather[0].description).substring(1)}`
@@ -118,11 +111,58 @@ function saveWeather() {
   savedWeathers.push(weatherInfo)
   localStorage.setItem("weathers", JSON.stringify(savedWeathers))
   weatherInfo = {}
+  renderSavedWeathers()
 }
 
 
 function renderSavedWeathers() {
-  for(i = 0; i <= savedWeathers[0].length; i ++) {
-    savedWeathersDiv.innerHTML += `<div>Teste</div>`
-  }
+  savedWeathersDiv.innerHTML = `<div id="saved-weathers-title">
+                                  <p>Histórico</p>
+                                  <p>
+                                    <button>
+                                      <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()"></box-icon>
+                                    </button>
+                                  </p>
+                                </div>`
+  savedWeathers.forEach((weather) => {
+    savedWeathersDiv.innerHTML += `   
+                                      <div class="saved-weather">
+                                        <div class="city-name">
+                                          <div class="name">
+                                            <p>
+                                              ${weather.city}
+                                            </p>
+                                          </div>
+                                          <p class="date">${weather.time} | ${weather.location}</p>
+                                        </div>
+                                        <div class="city-weather">
+                                          <div>
+                                            <p class="weather-icon"><img src="${weather.icon}" alt="Ícone de ${weather.description}"></p>
+                                            <p class="weather">${weather.description}</p>
+                                          </div>
+                                          <div class="city-temperature">${weather.temperature}º C</div>
+                                          <div>
+                                              <button>
+                                                <box-icon name='x-circle' animation="tada-hover" color="white" style="cursor:pointer;" onclick="deleteSavedWeather(this)" id="${savedWeathers.indexOf(weather)}"></box-icon>
+                                              </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <hr>`
+  })
+}
+
+
+function deleteSavedWeather(element) {
+  savedWeathers = savedWeathers.filter((item) => (savedWeathers.indexOf(item) != element.id))
+  localStorage.setItem("weathers", JSON.stringify(savedWeathers))
+  renderSavedWeathers()
+}
+
+
+function clearHistory() {
+  localStorage.clear('weathers')
+  verifyLocalStorage()
+  renderSavedWeathers()
+  alert(`O histórico foi apagado com sucesso`)
 }
