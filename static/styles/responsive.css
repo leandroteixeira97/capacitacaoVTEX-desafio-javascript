@@ -1,0 +1,94 @@
+@media screen and (max-width: 479px) {
+  body {
+    padding: 50px 0px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0px;
+    border-radius: 0px;
+  }
+
+  #greetings {
+    width: 100%;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 0px;
+  }
+
+  #greetings p {
+    margin: 10px;
+  }
+
+  #city-info {
+    flex-wrap: wrap;
+  }
+
+  #city-info div {
+    font-size: 2rem;
+    margin: 0px 10px;
+  }
+
+  #city-weather {
+    width: 100%;
+    gap: 0px;
+  }
+
+  .city-weather {
+    width: 100%;
+    gap: 0px;
+  }
+
+  .weather-icon img {
+    margin: -20px;
+    width: 80px;
+  }
+
+  #name {
+    font-size: 1.5rem;
+  }
+
+  .name p {
+    font-size: 1.5rem;
+  }
+
+  #weather {
+    font-size: 1rem;
+  }
+
+  .weather {
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .city-temperature {
+    font-size: 2rem;
+  }
+
+  #saved-weathers {
+    width: 100%;
+  }
+
+  #saved-weathers-title {
+    width: 100%;
+    align-items: center;
+    font-size: 2rem;
+    margin: 10px;
+  }
+
+  #saved-weathers-title p {
+    font-size: 1.5rem;
+    margin: 0px 10px;
+  }
+
+  #saved-weathers {
+    margin: 10px 0px;
+    width: 100%;
+  }
+  
+  #saved-weathers-title {
+    width: 100%;
+    font-size: 1rem;
+    margin: 10px 0px;
+  }
+}
