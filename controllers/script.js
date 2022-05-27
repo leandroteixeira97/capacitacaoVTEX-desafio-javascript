@@ -19,100 +19,100 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
   lang: "pt_br",
   units: "metric"
-}
+};
 
 
 function preLoader() {
-  cityName.innerHTML = "<box-icon name='loader-alt' animation='spin' rotate='90' color='white' ></box-icon>"
-  cityDate.innerText = ''
-  cityWeather.innerText = ''
-  cityTemperature.innerText = ''
-  weatherIcon.innerHTML = ''
-}
+  cityName.innerHTML = "<box-icon name='loader-alt' animation='spin' rotate='90' color='white' ></box-icon>";
+  cityDate.innerText = '';
+  cityWeather.innerText = '';
+  cityTemperature.innerText = '';
+  weatherIcon.innerHTML = '';
+};
 
 
 function getLocation() {
-  preLoader()
+  preLoader();
   if (navigator.geolocation) {
     if (localStorage.length != 0) {
-      renderSavedWeathers()
+      renderSavedWeathers();
     } else {
-      savedWeathers = []
+      savedWeathers = [];
     }
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
   else { cityName.innerText = "Seu browser não suporta Geolocalização."; }
-}
+};
 
 function verifyLocalStorage() {
   if (localStorage.length == 0) {
-    savedWeathers = []
+    savedWeathers = [];
   } else {
-    savedWeathers = JSON.parse(localStorage.weathers)
+    savedWeathers = JSON.parse(localStorage.weathers);
   }
-}
+};
 
 
 function showPosition(position) {
-  latitude = position.coords.latitude
-  longitude = position.coords.longitude
-  getWeatherInfo(latitude, longitude)
-}
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  getWeatherInfo(latitude, longitude);
+};
 
 
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-      cityName.innerText = "Clique em “Permitir” e depois recarregue a página para usar o app"
+      cityName.innerText = "Clique em “Permitir” e depois recarregue a página para usar o app";
       break;
     case error.POSITION_UNAVAILABLE:
-      cityName.innerText = "Localização indisponível."
+      cityName.innerText = "Localização indisponível.";
       break;
     case error.TIMEOUT:
-      cityName.innerText = "A requisição expirou."
+      cityName.innerText = "A requisição expirou.";
       break;
     case error.UNKNOWN_ERROR:
-      cityName.innerText = "Algum erro desconhecido aconteceu. Por favor, recarregue a página"
+      cityName.innerText = "Algum erro desconhecido aconteceu. Por favor, recarregue a página";
       break;
-  }
-}
+  };
+};
 
 
 async function getWeatherInfo(lat, long) {
   fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&appid=${api.key}`)
     .then(response => {
       if (!response.ok) {
-        throw new Error(`http error: status ${response.status}`)
+        throw new Error(`http error: status ${response.status}`);
       }
       return response.json();
     })
     .catch(error => {
-      alert(error.message)
+      alert(error.message);
     })
     .then(response => {
-      cityName.innerText = `${response.name}, ${response.sys.country}`
-      cityDate.innerText = `${date.toLocaleDateString('pt-BR', dateOptions)}`
-      cityWeather.innerText = `${(response.weather[0].description)[0].toUpperCase() + (response.weather[0].description).substring(1)}`
-      weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png" alt="Ícone de ${response.weather[0].description}">`
-      cityTemperature.innerText = `${Math.round(response.main.temp)}º C`
-      weatherData = response
+      cityName.innerText = `${response.name}, ${response.sys.country}`;
+      cityDate.innerText = `${date.toLocaleDateString('pt-BR', dateOptions)}`;
+      cityWeather.innerText = `${(response.weather[0].description)[0].toUpperCase() + (response.weather[0].description).substring(1)}`;
+      weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png" alt="Ícone de ${response.weather[0].description}">`;
+      cityTemperature.innerText = `${Math.round(response.main.temp)}º C`;
+      weatherData = response;
     });
 }
 
 
 function saveWeather() {
-  date = new Date()
-  weatherInfo.city = weatherData.name
-  weatherInfo.temperature = Math.round(weatherData.main.temp)
-  weatherInfo.description = (weatherData.weather[0].description)[0].toUpperCase() + (weatherData.weather[0].description).substring(1)
-  weatherInfo.icon = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
-  weatherInfo.location = date.toLocaleDateString('pt-BR', dateOptions)
-  weatherInfo.time = date.toLocaleTimeString('pt-BR')
-  savedWeathers.push(weatherInfo)
-  localStorage.setItem("weathers", JSON.stringify(savedWeathers))
-  weatherInfo = {}
-  renderSavedWeathers()
-}
+  date = new Date();
+  weatherInfo.city = weatherData.name;
+  weatherInfo.temperature = Math.round(weatherData.main.temp);
+  weatherInfo.description = (weatherData.weather[0].description)[0].toUpperCase() + (weatherData.weather[0].description).substring(1);
+  weatherInfo.icon = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+  weatherInfo.location = date.toLocaleDateString('pt-BR', dateOptions);
+  weatherInfo.time = date.toLocaleTimeString('pt-BR');
+  savedWeathers.push(weatherInfo);
+  localStorage.setItem("weathers", JSON.stringify(savedWeathers));
+  weatherInfo = {};
+  renderSavedWeathers();
+};
 
 
 function renderSavedWeathers() {
@@ -123,7 +123,7 @@ function renderSavedWeathers() {
                                       <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()"></box-icon>
                                     </button>
                                   </p>
-                                </div>`
+                                </div>`;
   savedWeathers.forEach((weather) => {
     savedWeathersDiv.innerHTML += `   
                                       <div class="saved-weather">
@@ -149,20 +149,20 @@ function renderSavedWeathers() {
                                         </div>
                                       </div>
                                       <hr>`
-  })
-}
+  });
+};
 
 
 function deleteSavedWeather(element) {
-  savedWeathers = savedWeathers.filter((item) => (savedWeathers.indexOf(item) != element.id))
-  localStorage.setItem("weathers", JSON.stringify(savedWeathers))
-  renderSavedWeathers()
-}
+  savedWeathers = savedWeathers.filter((item) => (savedWeathers.indexOf(item) != element.id));
+  localStorage.setItem("weathers", JSON.stringify(savedWeathers));
+  renderSavedWeathers();
+};
 
 
 function clearHistory() {
-  localStorage.clear('weathers')
-  verifyLocalStorage()
-  renderSavedWeathers()
-  alert(`O histórico foi apagado com sucesso`)
-}
+  localStorage.clear('weathers');
+  verifyLocalStorage();
+  renderSavedWeathers();
+  alert(`O histórico foi apagado com sucesso`);
+};
