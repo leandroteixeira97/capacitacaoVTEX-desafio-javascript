@@ -1,12 +1,49 @@
+@media screen and (min-width: 480px) and (max-width: 710px) {
+  #navbar {
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
 @media screen and (max-width: 479px) {
-  body {
-    padding: 50px 0px;
+
+  #navbar {
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #navbar div {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #navbar-items ul {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #navbar-items ul li a {
+    padding: 5px;
+    margin: 5px;
   }
 
   .content {
     width: 100%;
     padding: 0px;
     border-radius: 0px;
+    margin-top: 110px;
+    margin-bottom: 30px;
   }
 
   #greetings {
@@ -65,10 +102,6 @@
     font-size: 2rem;
   }
 
-  #saved-weathers {
-    width: 100%;
-  }
-
   #saved-weathers-title {
     width: 100%;
     align-items: center;
@@ -82,7 +115,7 @@
   }
 
   #saved-weathers {
-    margin: 10px 0px;
+    margin: 0px 0px 30px;
     width: 100%;
   }
   

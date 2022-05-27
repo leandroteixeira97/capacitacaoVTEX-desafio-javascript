@@ -17,10 +17,24 @@
 
 <body onload="verifyLocalStorage(), getLocation()" id="background">
 
+  <nav id="navbar">
+    <div id="title">
+      <a href="#">
+        <img src="../static/img/cloud.png" alt="Logo weatherNOW" id="logo-weatherNOW">WeatherNOW
+      </a>
+    </div>
+    <div id="navbar-items">
+      <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#footer">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="content">
     <header id="greetings">
       <p>
-        WeatherNOW
+        Bem vindo(a)!
       </p>
       <p>
         <button onclick="saveWeather()">
@@ -52,12 +66,43 @@
       <p>Histórico</p>
       <p>
         <button>
-          <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()"></box-icon>
+          <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()">
+          </box-icon>
         </button>
       </p>
     </div>
   </div>
-  
+
+  <footer id="footer">
+    <ul id="media-icons">
+      <li>
+        <a href="https://br.pinterest.com/leandroaquinot" target="_blank">
+          <box-icon type='logo' name='pinterest-alt' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/leandroteixeira97" target="_blank">
+          <box-icon name='instagram' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/leandro.teixeira.sccp" target="_blank">
+          <box-icon name='facebook' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/leandroteixeira97" target="_blank">
+          <box-icon name='linkedin' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.github.com/leandroteixeira97" target="_blank">
+          <box-icon name='github' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
+        </a>
+      </li>
+    </ul>
+  </footer>
+
   <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
   <script src="./controllers/script.js"></script>
 </body>

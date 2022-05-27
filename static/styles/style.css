@@ -11,6 +11,7 @@ html {
   overflow: auto;
 }
 
+
 button {
   width: 40px;
   height: 40px;
@@ -23,12 +24,88 @@ button {
 
 
 body {
-  background-color: rgb(56, 62, 80);
+  background: linear-gradient(0deg, rgba(16,146,172,1) 0%, rgba(80,213,240,1) 25%, rgba(167,239,254,1) 50%, rgba(80,213,240,1) 75%, rgba(16,146,172,1) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 50px;
+  
+}
+
+#title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#title a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0px 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#logo-weatherNOW {
+  width: 12%;
+  margin-right: 10px;
+  filter: grayscale(100%);
+}
+
+#title a:hover {
+  background-color: rgb(206, 206, 206);
+  transition: .3s ease-in;
+  color: rgb(0, 0, 0);
+}
+
+#navbar {
+  background: rgba( 0, 0, 0, 0.3 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: light 300;
+  z-index: 10;
+}
+
+#navbar div {
+  margin: 0px 80px;
+}
+
+#navbar-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#navbar-items ul, li, a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+#navbar-items ul li a {
+  margin: 0px 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#navbar-items ul li a:hover {
+  background-color: white;
+  transition: .3s ease-in;
+  color: black;
+}
+
+#navbar-items ul li a i:hover {
+  color: black;
 }
 
 .content {
@@ -41,6 +118,7 @@ body {
   -webkit-backdrop-filter: blur( 3px );
   border-radius: 20px;
   padding: 0px 20px;
+  margin: 80px 0px 0px;
 }
 
 #greetings {
@@ -130,3 +208,25 @@ hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+#footer {
+  background: rgba( 0, 0, 0, 0.3 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: light 300;
+  z-index: 10;
+}
+
+#media-icons {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
