@@ -54,7 +54,7 @@ function verifyLocalStorage() {
 };
 
 function setBackground(data) {
-  let weatherID = data.cod
+  let weatherID = data.weather[0].id
   if (date.getHours() >= 6 && date.getHours() < 18) {
     if (weatherID < 800) {
       background.style.backgroundColor = '#98b1b6'
@@ -143,7 +143,7 @@ function renderSavedWeathers() {
                                   </p>
                                 </div>`;
   savedWeathers.forEach((weather) => {
-    savedWeathersDiv.innerHTML += `   
+    savedWeathersDiv.innerHTML += `   <hr>
                                       <div class="saved-weather">
                                         <div class="city-name">
                                           <div class="name">
@@ -166,7 +166,7 @@ function renderSavedWeathers() {
                                           </div>
                                         </div>
                                       </div>
-                                      <hr>`
+                                      `
   });
 };
 
