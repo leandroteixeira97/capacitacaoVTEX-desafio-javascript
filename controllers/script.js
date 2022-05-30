@@ -7,6 +7,7 @@ let weatherInfo = new Object();
 
 
 const dateOptions = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' };
+const background = document.querySelector('#background')
 const cityName = document.querySelector('p#name');
 const cityDate = document.querySelector('p#date');
 const cityWeather = document.querySelector('p#weather');
@@ -52,6 +53,22 @@ function verifyLocalStorage() {
   }
 };
 
+function setBackground(data) {
+  let weatherID = data.cod
+  if (date.getHours() >= 6 && date.getHours() < 18) {
+    if (weatherID < 800) {
+      background.style.backgroundColor = '#98b1b6'
+    } else {
+      background.style.backgroundColor = '#50d5f0'
+    }
+  } else {
+    if (weatherID < 800) {
+      background.style.backgroundColor = '#4b5467'
+    } else {
+      background.style.backgroundColor = '#364f86'
+    }
+  }
+}
 
 function showPosition(position) {
   latitude = position.coords.latitude;
@@ -96,6 +113,7 @@ async function getWeatherInfo(lat, long) {
       weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png" alt="Ícone de ${response.weather[0].description}">`;
       cityTemperature.innerText = `${Math.round(response.main.temp)}º C`;
       weatherData = response;
+      setBackground(weatherData)
     });
 }
 
