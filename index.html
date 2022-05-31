@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="WeatherNOW te informa sobre as condições metereológicas de sua região através de geolocalização">
   <link rel="stylesheet" href="./static/styles/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,10 +32,10 @@
         Bem vindo(a)!
       </p>
       <p>
-        <button id="save-btn">
+        <button id="save-btn" aria-label="Salvar">
           <box-icon name='save' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
-        <button id="refresh-btn">
+        <button id="refresh-btn" aria-label="Recarregar">
           <box-icon name='refresh' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
       </p>
@@ -59,7 +60,7 @@
     <div id="saved-weathers-title">
       <p>Histórico</p>
       <p>
-        <button id="clear-history-btn">
+        <button id="clear-history-btn" aria-label="Limpar histórico">
           <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;">
           </box-icon>
         </button>
@@ -70,27 +71,27 @@
   <footer id="footer">
     <ul id="media-icons">
       <li>
-        <a href="https://br.pinterest.com/leandroaquinot" target="_blank">
+        <a href="https://br.pinterest.com/leandroaquinot" target="_blank" aria-label="Pinterest de Leandro">
           <box-icon type='logo' name='pinterest-alt' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </a>
       </li>
       <li>
-        <a href="https://www.instagram.com/leandroteixeira97" target="_blank">
+        <a href="https://www.instagram.com/leandroteixeira97" target="_blank" aria-label="Instagram de Leandro">
           <box-icon name='instagram' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </a>
       </li>
       <li>
-        <a href="https://www.facebook.com/leandro.teixeira.sccp" target="_blank">
+        <a href="https://www.facebook.com/leandro.teixeira.sccp" target="_blank" aria-label="Facebook de Leandro">
           <box-icon name='facebook' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </a>
       </li>
       <li>
-        <a href="https://www.linkedin.com/in/leandroteixeira97" target="_blank">
+        <a href="https://www.linkedin.com/in/leandroteixeira97" target="_blank" aria-label="Linkedin de Leandro">
           <box-icon name='linkedin' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </a>
       </li>
       <li>
-        <a href="https://www.github.com/leandroteixeira97" target="_blank">
+        <a href="https://www.github.com/leandroteixeira97" target="_blank" aria-label="Github de Leandro">
           <box-icon name='github' type='logo' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </a>
       </li>
@@ -98,7 +99,7 @@
   </footer>
 
   <div id="back-to-top">
-    <a href="#">
+    <a href="#" aria-label="Voltar ao topo">
       <box-icon type='solid' name='up-arrow' color="white" style="cursor:pointer;"></box-icon>
     </a>
   </div>
