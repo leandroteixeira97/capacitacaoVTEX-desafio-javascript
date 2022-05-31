@@ -7,11 +7,6 @@
     margin: 0px;
     padding: 0px;
   }
-
-  .content {
-    margin-top: 140px;
-    margin-bottom: 30px;
-  }
 }
 
 @media screen and (max-width: 479px) {

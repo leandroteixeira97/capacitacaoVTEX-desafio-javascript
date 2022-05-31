@@ -15,18 +15,13 @@
   <title>WeatherNOW</title>
 </head>
 
-<body onload="verifyLocalStorage(), getLocation()" id="background">
+<body id="background">
 
   <nav id="navbar">
     <div id="title">
       <a href="#">
         <img src="./static/img/cloud.png" alt="Logo weatherNOW" id="logo-weatherNOW">WeatherNOW
       </a>
-    </div>
-    <div id="navbar-items">
-      <ul>
-        <li><a href="#">Início</a></li>
-      </ul>
     </div>
   </nav>
 
@@ -36,10 +31,10 @@
         Bem vindo(a)!
       </p>
       <p>
-        <button onclick="saveWeather()">
+        <button id="save-btn">
           <box-icon name='save' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
-        <button onclick="getLocation(), renderSavedWeathers()">
+        <button id="refresh-btn">
           <box-icon name='refresh' animation="tada-hover" color="white" style="cursor:pointer;"></box-icon>
         </button>
       </p>
@@ -64,8 +59,8 @@
     <div id="saved-weathers-title">
       <p>Histórico</p>
       <p>
-        <button>
-          <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;" onclick="clearHistory()">
+        <button id="clear-history-btn">
+          <box-icon name='trash' animation="tada-hover" color="white" style="cursor:pointer;">
           </box-icon>
         </button>
       </p>
@@ -102,6 +97,13 @@
     </ul>
   </footer>
 
+  <div id="back-to-top">
+    <a href="#">
+      <box-icon type='solid' name='up-arrow' color="white" style="cursor:pointer;"></box-icon>
+    </a>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
   <script src="./controllers/script.js"></script>
 </body>

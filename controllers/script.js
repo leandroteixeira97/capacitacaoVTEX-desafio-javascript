@@ -7,13 +7,18 @@ let weatherInfo = new Object();
 
 
 const dateOptions = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' };
-const background = document.querySelector('#background')
+const background = document.querySelector('#background');
 const cityName = document.querySelector('p#name');
 const cityDate = document.querySelector('p#date');
 const cityWeather = document.querySelector('p#weather');
 const weatherIcon = document.querySelector('p#weather-icon');
 const cityTemperature = document.querySelector('div#city-temperature');
 const savedWeathersDiv = document.querySelector('div#saved-weathers');
+const saveButton = document.querySelector('button#save-btn').addEventListener('click', saveWeather, false);
+const refreshButton = document.querySelector('button#refresh-btn').addEventListener('click', getLocation, renderSavedWeathers, false);
+const clearHistoryButton = document.querySelector('button#clear-history-btn').addEventListener('click', clearHistory, false);
+const scrollButton = document.querySelector('div#back-to-top');
+
 
 const api = {
   key: "b454583c91e7916b2e10b4d4eed1fe98",
@@ -115,7 +120,7 @@ async function getWeatherInfo(lat, long) {
       weatherData = response;
       setBackground(weatherData)
     });
-}
+};
 
 
 function saveWeather() {
@@ -179,8 +184,24 @@ function deleteSavedWeather(element) {
 
 
 function clearHistory() {
-  localStorage.clear('weathers');
-  verifyLocalStorage();
-  renderSavedWeathers();
-  alert(`O histórico foi apagado com sucesso`);
+  if (savedWeathers.length == 0) {
+    alert('Não há histórico a ser apagado')
+  } else {
+    localStorage.clear('weathers');
+    verifyLocalStorage();
+    renderSavedWeathers();
+    alert(`O histórico foi apagado com sucesso`);
+  }
 };
+
+function verifyScroll() {
+  if (document.documentElement.scrollTop == 0) {
+    scrollButton.style.display = 'none'
+  } else {
+    scrollButton.style.display = 'flex'
+  };
+};
+
+document.addEventListener("DOMContentLoaded", verifyLocalStorage, false);
+document.addEventListener("DOMContentLoaded", getLocation, false);
+document.addEventListener('scroll', verifyScroll, false);
